@@ -27,7 +27,7 @@ function setupEventListeners() {
 
 function startPeriod() {
     if (periodData.currentPeriod) {
-        alert('Period already in progress. End current period first.');
+        showPopup('Period already in progress. End current period first. 🌸', 'error');
         return;
     }
 
@@ -46,7 +46,7 @@ function startPeriod() {
 
 function endPeriod() {
     if (!periodData.currentPeriod) {
-        alert('No active period to end.');
+        showPopup('No active period to end. 🌸', 'error');
         return;
     }
 

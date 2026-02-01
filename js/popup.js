@@ -1,7 +1,7 @@
 // Custom Popup System for SheBloom
 function showPopup(message, type = 'info') {
     // Remove any existing popup
-    const existingPopup = document.querySelector('.shebloom-popup');
+    const existingPopup = document.querySelector('.shebloom-popup-overlay');
     if (existingPopup) {
         existingPopup.remove();
     }
@@ -115,7 +115,11 @@ function showPopup(message, type = 'info') {
         }
     `;
     
-    document.head.appendChild(style);
+    if (!document.querySelector('style[data-shebloom-popup]')) {
+        style.setAttribute('data-shebloom-popup', 'true');
+        document.head.appendChild(style);
+    }
+    
     overlay.appendChild(popup);
     document.body.appendChild(overlay);
     
