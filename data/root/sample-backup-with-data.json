@@ -1,0 +1,88 @@
+{
+  "root": {
+    "metadata": {
+      "exportDate": "2026-02-01T10:13:20.548Z",
+      "version": "1.0",
+      "app": "SheBloom",
+      "description": "Sample backup demonstrating the branches and root structure"
+    },
+    "summary": {
+      "totalMoods": 2,
+      "totalJournals": 1,
+      "totalCycles": 1,
+      "totalStudyTasks": 1,
+      "totalTransactions": 2,
+      "totalNotes": 1
+    }
+  },
+  "branches": {
+    "moods": [
+      {
+        "mood": "happy",
+        "note": "Feeling great today!",
+        "date": "2/1/2026, 10:00:00 AM",
+        "timestamp": 1738407600000
+      },
+      {
+        "mood": "amazing",
+        "note": "Best day ever!",
+        "date": "1/31/2026, 9:00:00 AM",
+        "timestamp": 1738317600000
+      }
+    ],
+    "journals": [
+      {
+        "title": "My First Journal Entry",
+        "content": "This is a sample journal entry to demonstrate the data structure.",
+        "date": "2/1/2026, 10:00:00 AM",
+        "timestamp": 1738407600000
+      }
+    ],
+    "period": {
+      "cycles": [
+        {
+          "startDate": "2026-01-15T08:00:00.000Z",
+          "endDate": "2026-01-20T08:00:00.000Z",
+          "symptoms": []
+        }
+      ],
+      "currentPeriod": null,
+      "symptoms": []
+    },
+    "study": [
+      {
+        "subject": "Mathematics",
+        "topic": "Calculus",
+        "duration": 60,
+        "date": "2026-02-01",
+        "completed": false,
+        "timestamp": 1738407600000
+      }
+    ],
+    "budget": [
+      {
+        "type": "income",
+        "description": "Allowance",
+        "amount": 100,
+        "date": "2026-02-01",
+        "category": "Other",
+        "timestamp": 1738407600000
+      },
+      {
+        "type": "expense",
+        "description": "Coffee",
+        "amount": 5,
+        "date": "2026-02-01",
+        "category": "Food",
+        "timestamp": 1738407600000
+      }
+    ],
+    "notes": [
+      {
+        "content": "Remember to backup data regularly!",
+        "date": "2/1/2026",
+        "id": 1738407600000
+      }
+    ]
+  }
+}
