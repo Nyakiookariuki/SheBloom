@@ -37,6 +37,26 @@ Then access it from any device and install!
 - Study Planner 📚
 - Budget Manager 💰
 - Quick Notes 📝
+- **Data Management** 💾 - Export, import, and backup your data
+
+## 💾 Data Management
+
+SheBloom now includes a comprehensive data management system!
+
+### Features:
+- **Export All Data** - Create a complete backup of all your SheBloom data
+- **Export as Branches** - Structured backup with root metadata and branch organization
+- **Individual Exports** - Export specific data types (moods, journals, period, etc.)
+- **Import Data** - Restore previously exported data on any device
+- **Data Summary** - View statistics about your stored data
+- **Clear All Data** - Remove all data when needed
+
+### File Organization:
+Your exported data can be saved in the `data/` directory:
+- `data/root/` - Complete backups with metadata
+- `data/branches/` - Individual data types organized by category
+
+All exports are in JSON format and can be easily shared or backed up to cloud storage.
 
 ## 📁 App Icons
 The app needs icon files in `assets/icons/`. You can:
