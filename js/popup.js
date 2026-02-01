@@ -1,6 +1,35 @@
 // Custom Popup System for SheBloom
 // Replaces browser alert() with beautiful styled popups
 
+// Add popup animations styles once on page load
+(function initPopupStyles() {
+    if (!document.getElementById('popup-animations')) {
+        const style = document.createElement('style');
+        style.id = 'popup-animations';
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            @keyframes slideDown {
+                from { 
+                    transform: translateY(-50px);
+                    opacity: 0;
+                }
+                to { 
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+})();
+
 /**
  * Show a custom popup message
  * @param {string} message - The message to display
@@ -72,7 +101,7 @@ function showPopup(message, type = 'info') {
         <p style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.6;">
             ${message}
         </p>
-        <button id="popupCloseBtn" class="btn" style="background: ${config.bgColor}; color: var(--text-dark); padding: 0.75rem 2rem; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem; font-weight: 600;">
+        <button class="popup-close-btn" style="background: ${config.bgColor}; color: var(--text-dark); padding: 0.75rem 2rem; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem; font-weight: 600;">
             OK
         </button>
     `;
@@ -80,37 +109,16 @@ function showPopup(message, type = 'info') {
     overlay.appendChild(popup);
     document.body.appendChild(overlay);
 
-    // Add animations
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideDown {
-            from { 
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
     // Close handlers
     const closePopup = () => {
         overlay.style.animation = 'fadeOut 0.2s ease-in-out';
         setTimeout(() => {
             overlay.remove();
-            style.remove();
         }, 200);
     };
 
-    // Close on button click
-    const closeBtn = document.getElementById('popupCloseBtn');
+    // Close on button click - use querySelector to avoid ID conflicts
+    const closeBtn = popup.querySelector('.popup-close-btn');
     closeBtn.addEventListener('click', closePopup);
 
     // Close on overlay click (click outside)
@@ -124,14 +132,6 @@ function showPopup(message, type = 'info') {
     if (type === 'success' || type === 'info') {
         setTimeout(closePopup, 3000);
     }
-
-    // Add fade out animation
-    style.textContent += `
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-    `;
 }
 
 /**
