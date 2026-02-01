@@ -2,6 +2,9 @@
 
 SheBloom is now a **Progressive Web App (PWA)** that works like a native app without needing any server!
 
+## 🔗 Live App
+Access SheBloom here: **[https://nyakiookariuki.github.io/SheBloom/](https://nyakiookariuki.github.io/SheBloom/)**
+
 ## ✨ Features
 - 📱 **Install on Phone/Computer** - Works like a native app
 - 🔄 **Works Offline** - Access anytime, even without internet
