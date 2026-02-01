@@ -12,7 +12,7 @@ function saveJournal() {
     const content = document.getElementById('journalContent').value.trim();
 
     if (!content) {
-        alert('Please write something first!');
+        showPopup('Please write something first!', 'warning');
         return;
     }
 

@@ -3,51 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>She Bloom</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SheBloom - Bloom where you are planted</title>
+    <meta name="theme-color" content="#ffc6d3">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to She Bloom</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <!-- Data Management line removed -->
-                <li><a href="features.html">Features</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="mood.html">Mood</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="period.html">Period</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="notes.html">Notes</a></li>
+        </ul>
+    </nav>
 
-    <main>
-        <section>
-            <h2>Our Features</h2>
-            <div class="feature-card">
-                <h3>Feature 1</h3>
-                <p>Description for feature 1.</p>
+    <main class="container">
+        <header class="page-header" style="text-align: center; padding: 3rem 0;">
+            <h1><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> Welcome to SheBloom</h1>
+            <p style="font-size: 1.2rem; margin-top: 1rem;">Your personal wellness companion - Bloom where you are planted 🌸</p>
+        </header>
+
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-smile-beam" style="font-size: 3rem; color: var(--pastel-pink); margin-bottom: 1rem;"></i>
+                <h3>Mood Tracker</h3>
+                <p>Track your daily emotions and mental wellness journey</p>
+                <a href="mood.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Start Tracking</a>
             </div>
-            <div class="feature-card">
-                <h3>Feature 2</h3>
-                <p>Description for feature 2.</p>
+
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-book" style="font-size: 3rem; color: var(--pastel-peach); margin-bottom: 1rem;"></i>
+                <h3>Journal</h3>
+                <p>Write your thoughts, dreams, and daily reflections</p>
+                <a href="journal.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Write Now</a>
             </div>
-            <div class="feature-card">
-                <h3>Feature 3</h3>
-                <p>Description for feature 3.</p>
+
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--pastel-pink); margin-bottom: 1rem;"></i>
+                <h3>Period Tracker</h3>
+                <p>Monitor your cycle and understand your body better</p>
+                <a href="period.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Track Cycle</a>
             </div>
-            <div class="feature-card">
-                <h3>Feature 4</h3>
-                <p>Description for feature 4.</p>
+
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--pastel-lavender); margin-bottom: 1rem;"></i>
+                <h3>Study Planner</h3>
+                <p>Plan your study sessions and achieve your academic goals</p>
+                <a href="study.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Plan Studies</a>
             </div>
-            <!-- Data Management feature card lines 85-90 removed -->
+
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-piggy-bank" style="font-size: 3rem; color: var(--pastel-mint); margin-bottom: 1rem;"></i>
+                <h3>Budget Manager</h3>
+                <p>Track your finances and manage your money wisely</p>
+                <a href="budget.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Manage Budget</a>
+            </div>
+
+            <div class="feature-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px var(--shadow); text-align: center;">
+                <i class="fas fa-sticky-note" style="font-size: 3rem; color: var(--pastel-yellow); margin-bottom: 1rem;"></i>
+                <h3>Quick Notes</h3>
+                <p>Jot down ideas, reminders, and important thoughts</p>
+                <a href="notes.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Take Notes</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 She Bloom. All Rights Reserved.</p>
+        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
     </footer>
 
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/SheBloom/service-worker.js')
+                .then(reg => console.log('Service Worker registered', reg))
+                .catch(err => console.log('Service Worker registration failed', err));
+        }
+    </script>
 </body>
 </html>

@@ -45,6 +45,7 @@
         <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
     </footer>
 
+    <script src="js/popup.js"></script>
     <script>
         // Simple notes functionality
         let notes = JSON.parse(localStorage.getItem('shebloom_notes')) || [];
@@ -72,7 +73,7 @@
             const content = document.getElementById('noteContent').value.trim();
             
             if (!content) {
-                alert('Please write something first!');
+                showPopup('Please write something first!', 'warning');
                 return;
             }
 
