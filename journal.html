@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheBloom - Journal</title>
+    <meta name="theme-color" content="#ffc6d3">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood.html">Mood</a></li>
+            <li><a href="journal.html" class="active">Journal</a></li>
+            <li><a href="period.html">Period</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="notes.html">Notes</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-book-open" style="color: var(--pastel-peach);"></i> Journal</h1>
+            <p>Capture your thoughts and memories</p>
+        </header>
+
+        <section class="journal-section">
+            <div class="journal-editor">
+                <h3>New Entry</h3>
+                <input type="text" id="journalTitle" placeholder="Title (optional)" class="input-field">
+                <textarea id="journalContent" placeholder="What's on your mind today?..." rows="10"></textarea>
+                <button id="saveJournal" class="btn btn-primary">Save Entry</button>
+            </div>
+
+            <div class="journal-entries">
+                <h3>Past Entries</h3>
+                <div id="journalList" class="journal-list">
+                    <p class="empty-state">No journal entries yet. Start writing your story!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
+    </footer>
+
+    <script src="js/journal.js"></script>
+</body>
+</html>

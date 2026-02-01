@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheBloom - Quick Notes</title>
+    <meta name="theme-color" content="#ffc6d3">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood.html">Mood</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="period.html">Period</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="notes.html" class="active">Notes</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-sticky-note" style="color: var(--pastel-yellow);"></i> Quick Notes</h1>
+            <p>Jot down your ideas and reminders</p>
+        </header>
+
+        <section class="notes-section">
+            <div class="note-input">
+                <textarea id="noteContent" placeholder="Write a quick note..." rows="4"></textarea>
+                <button id="addNote" class="btn btn-primary">Add Note</button>
+            </div>
+
+            <div class="notes-grid" id="notesGrid">
+                <p class="empty-state">No notes yet. Start writing!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
+    </footer>
+
+    <script>
+        // Simple notes functionality
+        let notes = JSON.parse(localStorage.getItem('shebloom_notes')) || [];
+
+        function displayNotes() {
+            const notesGrid = document.getElementById('notesGrid');
+            
+            if (notes.length === 0) {
+                notesGrid.innerHTML = '<p class="empty-state">No notes yet. Start writing!</p>';
+                return;
+            }
+
+            notesGrid.innerHTML = notes.map((note, index) => `
+                <div class="note-card">
+                    <p class="note-text">${note.content}</p>
+                    <div class="note-footer">
+                        <span class="note-date">${note.date}</span>
+                        <button class="delete-btn" onclick="deleteNote(${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addNote() {
+            const content = document.getElementById('noteContent').value.trim();
+            
+            if (!content) {
+                alert('Please write something first!');
+                return;
+            }
+
+            const note = {
+                content: content,
+                date: new Date().toLocaleDateString(),
+                id: Date.now()
+            };
+
+            notes.unshift(note);
+            localStorage.setItem('shebloom_notes', JSON.stringify(notes));
+            document.getElementById('noteContent').value = '';
+            displayNotes();
+        }
+
+        function deleteNote(index) {
+            showConfirmPopup('Delete this note?', () => {
+                notes.splice(index, 1);
+                localStorage.setItem('shebloom_notes', JSON.stringify(notes));
+                displayNotes();
+            });
+        }
+
+        function showConfirmPopup(message, onConfirm) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+            `;
+
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                max-width: 400px;
+                text-align: center;
+            `;
+
+            popup.innerHTML = `
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-dark);">${message}</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button id="confirmYes" class="btn" style="background: var(--pastel-pink);">Yes, Delete</button>
+                    <button id="confirmNo" class="btn" style="background: var(--pastel-blue);">Cancel</button>
+                </div>
+            `;
+
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+
+            document.getElementById('confirmYes').addEventListener('click', () => {
+                overlay.remove();
+                onConfirm();
+            });
+
+            document.getElementById('confirmNo').addEventListener('click', () => {
+                overlay.remove();
+            });
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
+        }
+
+        document.getElementById('addNote').addEventListener('click', addNote);
+        displayNotes();
+    </script>
+</body>
+</html>

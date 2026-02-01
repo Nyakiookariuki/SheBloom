@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheBloom - Budget Manager</title>
+    <meta name="theme-color" content="#ffc6d3">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood.html">Mood</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="period.html">Period</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="budget.html" class="active">Budget</a></li>
+            <li><a href="notes.html">Notes</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-piggy-bank" style="color: var(--pastel-mint);"></i> Budget Manager</h1>
+            <p>Track your income and expenses</p>
+        </header>
+
+        <section class="budget-section">
+            <div class="budget-summary">
+                <h3>Financial Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card stat-income">
+                        <div class="stat-value" id="totalIncome">KES 0.00</div>
+                        <div class="stat-label">Total Income</div>
+                    </div>
+                    <div class="stat-card stat-expense">
+                        <div class="stat-value" id="totalExpense">KES 0.00</div>
+                        <div class="stat-label">Total Expenses</div>
+                    </div>
+                    <div class="stat-card stat-balance">
+                        <div class="stat-value" id="balance">KES 0.00</div>
+                        <div class="stat-label">Balance</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="budget-form">
+                <h3>Add Transaction</h3>
+                <select id="transactionType" class="input-field">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="text" id="transactionDesc" placeholder="Description" class="input-field">
+                <input type="number" id="transactionAmount" placeholder="Amount" class="input-field" step="0.01" min="0">
+                <input type="date" id="transactionDate" class="input-field">
+                <select id="transactionCategory" class="input-field">
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="bills">Bills</option>
+                    <option value="salary">Salary</option>
+                    <option value="other">Other</option>
+                </select>
+                <button id="addTransaction" class="btn btn-primary">Add Transaction</button>
+            </div>
+
+            <div class="transaction-history">
+                <h3>Transaction History</h3>
+                <div id="transactionList" class="transaction-list">
+                    <p class="empty-state">No transactions yet. Start tracking your finances!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
+    </footer>
+
+    <script src="js/budget.js"></script>
+</body>
+</html>
