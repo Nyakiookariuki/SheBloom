@@ -3,127 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SheBloom - Home</title>
-    
-    <!-- PWA Meta Tags -->
-    <meta name="description" content="Your personal space to grow, plan, and flourish">
-    <meta name="theme-color" content="#ffc6d3">
-    <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="SheBloom">
-    <link rel="apple-touch-icon" href="assets/icons/app-icon.jfif">
-    <link rel="icon" href="assets/icons/app-icon.jfif">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <title>SheBloom</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="mood.html">Mood</a></li>
             <li><a href="journal.html">Journal</a></li>
             <li><a href="period.html">Period</a></li>
             <li><a href="study.html">Study</a></li>
             <li><a href="budget.html">Budget</a></li>
             <li><a href="notes.html">Notes</a></li>
-            <li><a href="data-management.html">Data</a></li>
+            <!-- Removed data management link -->
         </ul>
     </nav>
-
-    <main class="container">
-        <header class="hero">
-            <h1>Welcome to SheBloom</h1>
-            <p class="subtitle">Your personal space to grow, plan, and flourish <i class="fas fa-seedling" style="color: var(--pastel-pink);"></i></p>
-        </header>
-
-        <section class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-smile-beam" style="color: var(--pastel-pink);"></i></div>
-                <h3>Mood Tracker</h3>
-                <p>Track your daily emotions and find patterns in your wellbeing</p>
-                <a href="mood.html" class="btn">Get Started</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-book-open" style="color: var(--pastel-peach);"></i></div>
-                <h3>Journal</h3>
-                <p>Express yourself with daily journaling and reflections</p>
-                <a href="journal.html" class="btn">Write Now</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-heart" style="color: var(--pastel-pink);"></i></div>
-                <h3>Period Tracker</h3>
-                <p>Track your cycle and stay prepared with predictions</p>
-                <a href="period.html" class="btn">Track Cycle</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-graduation-cap" style="color: var(--pastel-lavender);"></i></div>
-                <h3>Study Planner</h3>
-                <p>Organize your study sessions and track your progress</p>
-                <a href="study.html" class="btn">Plan Studies</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-piggy-bank" style="color: var(--pastel-mint);"></i></div>
-                <h3>Budget Manager</h3>
-                <p>Keep track of your expenses and savings goals</p>
-                <a href="budget.html" class="btn">Manage Budget</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-sticky-note" style="color: var(--pastel-yellow);"></i></div>
-                <h3>Quick Notes</h3>
-                <p>Jot down ideas and important reminders anytime</p>
-                <a href="notes.html" class="btn">Take Notes</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-database" style="color: var(--pastel-blue);"></i></div>
-                <h3>Data Management</h3>
-                <p>Export, import, and backup all your SheBloom data</p>
-                <a href="data-management.html" class="btn">Manage Data</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
-    </footer>
-
-    <script>
-        // Register service worker for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => console.log('SW registered:', registration))
-                    .catch(error => console.log('SW registration failed:', error));
-            });
-        }
-
-        // Install prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // Show install button
-            const installBtn = document.createElement('button');
-            installBtn.innerHTML = '<i class="fas fa-download"></i> Install App';
-            installBtn.className = 'btn btn-primary';
-            installBtn.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 1000; box-shadow: 0 5px 20px var(--shadow);';
-            installBtn.addEventListener('click', async () => {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                installBtn.remove();
-            });
-            document.body.appendChild(installBtn);
-        });
-    </script>
+    <h1>Welcome to SheBloom</h1>
 </body>
 </html>
