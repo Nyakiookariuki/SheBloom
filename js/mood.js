@@ -30,7 +30,7 @@ function selectMood(button) {
 
 function saveMood() {
     if (!selectedMood) {
-        alert('Please select a mood first!');
+        showPopup('Please select a mood first!', 'warning');
         return;
     }
 

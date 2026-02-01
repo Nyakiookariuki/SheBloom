@@ -18,7 +18,7 @@ function addStudyTask() {
     const date = document.getElementById('studyDate').value;
 
     if (!subject || !topic || !duration || !date) {
-        alert('Please fill in all fields!');
+        showPopup('Please fill in all fields!', 'warning');
         return;
     }
 
