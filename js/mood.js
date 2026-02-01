@@ -69,7 +69,7 @@ function displayMoods() {
         happy: '<i class="fas fa-smile" style="color: var(--pastel-mint);"></i>',
         okay: '<i class="fas fa-meh" style="color: var(--pastel-blue);"></i>',
         sad: '<i class="fas fa-sad-tear" style="color: var(--pastel-lavender);"></i>',
-        stressed: '<i class="fas fa-tired" style="color: var(--pastel-peach);"></i>\n';
+        stressed: '<i class="fas fa-tired" style="color: var(--pastel-peach);"></i>'
     };
 
     moodList.innerHTML = moods.map((entry, index) => `
@@ -77,7 +77,7 @@ function displayMoods() {
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
                     <strong>${moodEmojis[entry.mood]} ${entry.mood.charAt(0).toUpperCase() + entry.mood.slice(1)}</strong>
-                    <p style="font-size: 0.9rem; color: var(--text-light); margin: 0.5rem 0 0 0;'>${entry.date}</p>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin: 0.5rem 0 0 0;">${entry.date}</p>
                 </div>
                 <button class="delete-btn" onclick="deleteMood(${index})"><i class="fas fa-trash"></i></button>
             </div>
