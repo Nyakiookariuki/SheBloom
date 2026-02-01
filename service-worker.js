@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shebloom-v1';
+const CACHE_NAME = 'shebloom-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -8,12 +8,14 @@ const urlsToCache = [
   '/study.html',
   '/budget.html',
   '/notes.html',
+  '/data-management.html',
   '/css/style.css',
   '/js/mood.js',
   '/js/journal.js',
   '/js/period.js',
   '/js/study.js',
   '/js/budget.js',
+  '/js/data-manager.js',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
@@ -26,6 +28,8 @@ self.addEventListener('install', event => {
         return cache.addAll(urlsToCache);
       })
   );
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting();
 });
 
 // Fetch event - serve from cache, fallback to network
@@ -57,4 +61,6 @@ self.addEventListener('activate', event => {
       );
     })
   );
+  // Claim all clients immediately
+  return self.clients.claim();
 });
