@@ -1,0 +1,30 @@
+{
+  "root": {
+    "metadata": {
+      "exportDate": "2026-02-01T10:13:20.548Z",
+      "version": "1.0",
+      "app": "SheBloom",
+      "description": "Complete backup of all SheBloom data with root metadata and branch organization"
+    },
+    "summary": {
+      "totalMoods": 0,
+      "totalJournals": 0,
+      "totalCycles": 0,
+      "totalStudyTasks": 0,
+      "totalTransactions": 0,
+      "totalNotes": 0
+    }
+  },
+  "branches": {
+    "moods": [],
+    "journals": [],
+    "period": {
+      "cycles": [],
+      "currentPeriod": null,
+      "symptoms": []
+    },
+    "study": [],
+    "budget": [],
+    "notes": []
+  }
+}

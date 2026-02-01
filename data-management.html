@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheBloom - Data Management</title>
+    <meta name="theme-color" content="#ffc6d3">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-spa" style="color: var(--pastel-pink);"></i> SheBloom</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood.html">Mood</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="period.html">Period</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="data-management.html" class="active">Data</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-database" style="color: var(--pastel-blue);"></i> Data Management</h1>
+            <p>Export, import, and manage your SheBloom data</p>
+        </header>
+
+        <section class="card">
+            <h2><i class="fas fa-download"></i> Export Data</h2>
+            <p>Save your data to files for backup or transfer</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <button class="btn" onclick="exportAllData()" style="background: var(--pastel-mint);">
+                    <i class="fas fa-file-archive"></i> Export All Data
+                </button>
+                <button class="btn" onclick="exportBranchesData()" style="background: var(--pastel-lavender);">
+                    <i class="fas fa-code-branch"></i> Export as Branches
+                </button>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h3>Export Individual Data Types</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                    <button class="btn btn-sm" onclick="exportType('moods')" style="background: var(--pastel-mint);">
+                        <i class="fas fa-smile"></i> Moods
+                    </button>
+                    <button class="btn btn-sm" onclick="exportType('journals')" style="background: var(--pastel-peach);">
+                        <i class="fas fa-book"></i> Journals
+                    </button>
+                    <button class="btn btn-sm" onclick="exportType('period')" style="background: var(--pastel-pink);">
+                        <i class="fas fa-heart"></i> Period
+                    </button>
+                    <button class="btn btn-sm" onclick="exportType('study')" style="background: var(--pastel-yellow);">
+                        <i class="fas fa-graduation-cap"></i> Study
+                    </button>
+                    <button class="btn btn-sm" onclick="exportType('budget')" style="background: var(--pastel-mint);">
+                        <i class="fas fa-wallet"></i> Budget
+                    </button>
+                    <button class="btn btn-sm" onclick="exportType('notes')" style="background: var(--pastel-yellow);">
+                        <i class="fas fa-sticky-note"></i> Notes
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-upload"></i> Import Data</h2>
+            <p>Load previously exported data back into SheBloom</p>
+            
+            <div style="margin-top: 1rem;">
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(this)">
+                <button class="btn" onclick="document.getElementById('importFile').click()" style="background: var(--pastel-blue);">
+                    <i class="fas fa-file-import"></i> Choose File to Import
+                </button>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
+                    <i class="fas fa-info-circle"></i> Supports both regular and branch-structured exports
+                </p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-chart-bar"></i> Data Summary</h2>
+            <div id="dataSummary" style="margin-top: 1rem;">
+                Loading...
+            </div>
+        </section>
+
+        <section class="card" style="border: 2px solid var(--pastel-pink);">
+            <h2><i class="fas fa-exclamation-triangle" style="color: var(--pastel-pink);"></i> Danger Zone</h2>
+            <p>Permanently delete all your data. This action cannot be undone!</p>
+            <button class="btn" onclick="clearAllData()" style="background: var(--pastel-pink); margin-top: 1rem;">
+                <i class="fas fa-trash-alt"></i> Clear All Data
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SheBloom - Bloom where you are planted <i class="fas fa-sun" style="color: var(--pastel-yellow);"></i></p>
+    </footer>
+
+    <script src="js/data-manager.js"></script>
+    <script>
+        // Export all data
+        function exportAllData() {
+            const filename = dataManager.exportData('all');
+            showNotification(`All data exported to ${filename}`);
+        }
+
+        // Export as branches structure
+        function exportBranchesData() {
+            dataManager.exportToBranches();
+            showNotification('Data exported with branches and root structure!');
+        }
+
+        // Export specific data type
+        function exportType(type) {
+            const filename = dataManager.exportData(type);
+            showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} data exported!`);
+        }
+
+        // Handle file import
+        function handleImport(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            showConfirmPopup('This will merge imported data with existing data. Continue?', () => {
+                // Determine if it's a branch structure by trying both methods
+                dataManager.importFromBranches(file, (success, message) => {
+                    if (success) {
+                        showNotification(message);
+                        updateDataSummary();
+                        // Reload the page to reflect imported data
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        showNotification(message, false);
+                    }
+                });
+            });
+
+            // Reset file input
+            input.value = '';
+        }
+
+        // Clear all data
+        function clearAllData() {
+            showConfirmPopup('⚠️ This will permanently delete ALL your SheBloom data! Are you absolutely sure?', () => {
+                showConfirmPopup('Final confirmation: Delete everything?', () => {
+                    dataManager.clearAllData();
+                    showNotification('All data has been cleared!');
+                    updateDataSummary();
+                });
+            });
+        }
+
+        // Update data summary
+        function updateDataSummary() {
+            const allData = dataManager.getAllData();
+            const summaryDiv = document.getElementById('dataSummary');
+
+            const items = [
+                { label: 'Mood Entries', count: Array.isArray(allData.moods) ? allData.moods.length : 0, icon: 'fa-smile', color: 'var(--pastel-mint)' },
+                { label: 'Journal Entries', count: Array.isArray(allData.journals) ? allData.journals.length : 0, icon: 'fa-book', color: 'var(--pastel-peach)' },
+                { label: 'Period Cycles', count: allData.period?.cycles?.length || 0, icon: 'fa-heart', color: 'var(--pastel-pink)' },
+                { label: 'Study Tasks', count: Array.isArray(allData.study) ? allData.study.length : 0, icon: 'fa-graduation-cap', color: 'var(--pastel-yellow)' },
+                { label: 'Budget Transactions', count: Array.isArray(allData.budget) ? allData.budget.length : 0, icon: 'fa-wallet', color: 'var(--pastel-mint)' },
+                { label: 'Quick Notes', count: Array.isArray(allData.notes) ? allData.notes.length : 0, icon: 'fa-sticky-note', color: 'var(--pastel-yellow)' }
+            ];
+
+            summaryDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    ${items.map(item => `
+                        <div style="padding: 1rem; background: ${item.color}; border-radius: 10px; text-align: center;">
+                            <i class="fas ${item.icon}" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h3 style="margin: 0.5rem 0;">${item.count}</h3>
+                            <p style="margin: 0; font-size: 0.9rem;">${item.label}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Show notification
+        function showNotification(message, success = true) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `<i class="fas fa-${success ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: ${success ? 'var(--pastel-mint)' : 'var(--pastel-pink)'};
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px var(--shadow);
+                z-index: 1000;
+                max-width: 300px;
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Show confirmation popup
+        function showConfirmPopup(message, onConfirm) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+            `;
+
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                max-width: 400px;
+                text-align: center;
+            `;
+
+            popup.innerHTML = `
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-dark);">${message}</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button id="confirmYes" class="btn" style="background: var(--pastel-pink);">Yes, Continue</button>
+                    <button id="confirmNo" class="btn" style="background: var(--pastel-blue);">Cancel</button>
+                </div>
+            `;
+
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+
+            document.getElementById('confirmYes').addEventListener('click', () => {
+                overlay.remove();
+                onConfirm();
+            });
+
+            document.getElementById('confirmNo').addEventListener('click', () => {
+                overlay.remove();
+            });
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDataSummary();
+        });
+    </script>
+</body>
+</html>
