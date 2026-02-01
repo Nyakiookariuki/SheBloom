@@ -1,1 +1,43 @@
-{\n  \"name\": \"Your App Name\",\n  \"short_name\": \"App\",\n  \"start_url\": \"./index.html\",\n  \"display\": \"standalone\",\n  \"icons\": [\n    {\n      \"src\": \"./icon.png\",\n      \"sizes\": \"192x192\",\n      \"type\": \"image/png\"\n    }\n  ],\n  \"shortcuts\": [\n    {\n      \"name\": \"Mood\",\n      \"short_name\": \"Mood\",\n      \"url\": \"./mood.html\",\n      \"icons\": [\n        {\n          \"src\": \"./icon.png\",\n          \"sizes\": \"192x192\",\n          \"type\": \"image/png\"\n        }\n      ]\n    }\n  ]\n}
+{
+  "name": "SheBloom - Your Personal Wellness App",
+  "short_name": "SheBloom",
+  "description": "Track your mood, period, journal, study, budget, and notes all in one place",
+  "start_url": "/SheBloom/",
+  "display": "standalone",
+  "background_color": "#ffc6d3",
+  "theme_color": "#ffc6d3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/SheBloom/assets/icons/app-icon.jfif",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/SheBloom/assets/icons/app-icon.jfif",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Mood Tracker",
+      "url": "/SheBloom/mood.html",
+      "description": "Track your daily mood"
+    },
+    {
+      "name": "Period Tracker",
+      "url": "/SheBloom/period.html",
+      "description": "Track your menstrual cycle"
+    },
+    {
+      "name": "Journal",
+      "url": "/SheBloom/journal.html",
+      "description": "Write in your journal"
+    }
+  ]
+}
