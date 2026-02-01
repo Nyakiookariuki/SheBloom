@@ -19,12 +19,12 @@ function addTransaction() {
     const category = document.getElementById('transactionCategory').value;
 
     if (!description || !amount || !date) {
-        alert('Please fill in all fields!');
+        showPopup('Please fill in all fields! 💰', 'error');
         return;
     }
 
     if (amount <= 0) {
-        alert('Amount must be greater than 0!');
+        showPopup('Amount must be greater than 0! 💰', 'error');
         return;
     }
 
